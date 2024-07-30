@@ -1,0 +1,115 @@
+databaseChangeLog:
+  - changeSet:
+      id: Insert John Doe's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: John Doe
+              - column:
+                  name: score
+                  value: 5.50
+              - column:
+                  name: gender
+                  value: MALE
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: speciality
+                  value: Mathematics
+
+  - changeSet:
+      id: Insert Jane Smith's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: Jane Smith
+              - column:
+                  name: score
+                  value: 9.25
+              - column:
+                  name: gender
+                  value: FEMALE
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: speciality
+                  value: Physics
+
+  - changeSet:
+      id: Insert Michael Johnson's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: Michael Johnson
+              - column:
+                  name: score
+                  value: 9.5
+              - column:
+                  name: gender
+                  value: MALE
+              - column:
+                  name: status
+                  value: DELETED
+              - column:
+                  name: speciality
+                  value: Chemistry
+
+  - changeSet:
+      id: Insert Emily Davis's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: Emily Davis
+              - column:
+                  name: score
+                  value: 8.0
+              - column:
+                  name: gender
+                  value: FEMALE
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: speciality
+                  value: Biology
+
+  - changeSet:
+      id: Insert David Brown's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: David Brown
+              - column:
+                  name: score
+                  value: 8.5
+              - column:
+                  name: gender
+                  value: MALE
+              - column:
+                  name: status
+                  value: DELETED
+              - column:
+                  name: speciality
+                  value: Literature

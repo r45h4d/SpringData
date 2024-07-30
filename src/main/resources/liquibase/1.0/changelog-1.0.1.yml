@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add speciality column to students table
+      author: Rashad Amanov
+      changes:
+        - addColumn:
+            tableName: students
+            columns:
+              - column:
+                  name: speciality
+                  type: varchar(50)
+                  constraints:
+                    nullable: true

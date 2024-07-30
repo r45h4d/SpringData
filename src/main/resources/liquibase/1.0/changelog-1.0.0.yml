@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create students table
+      author: Rashad Amanov
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: score
+                  type: numeric(3, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: varchar(8)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+
