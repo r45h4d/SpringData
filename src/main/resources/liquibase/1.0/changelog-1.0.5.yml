@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: Insert Emily Davis's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: Emily Davis
+              - column:
+                  name: score
+                  value: 8.0
+              - column:
+                  name: gender
+                  value: FEMALE
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: speciality
+                  value: Biology

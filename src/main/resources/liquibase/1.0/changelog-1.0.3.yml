@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: Insert Jane Smith's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: Jane Smith
+              - column:
+                  name: score
+                  value: 9.25
+              - column:
+                  name: gender
+                  value: FEMALE
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: speciality
+                  value: Physics

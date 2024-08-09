@@ -18,22 +18,28 @@ repositories {
 }
 
 dependencies {
-    //spring
-    implementation "org.springframework.boot:spring-boot-starter-web"
+    // Spring Boot Starter Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    //lombok
-    compileOnly "org.projectlombok:lombok"
-    annotationProcessor "org.projectlombok:lombok"
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-    //spring JPA
-    //implementation 'org.springframework.data:spring-data-jpa:2.7.12'
+    // Spring Data JPA and Java Persistence API
     implementation 'org.springframework.data:spring-data-jpa'
+    implementation 'javax.persistence:javax.persistence-api'
 
-    //postgres sql
-    //implementation 'org.postgresql:postgresql:42.7.3'
+    // Hibernate Core (Includes JPA and Hibernate Annotations)
+    implementation 'org.hibernate:hibernate-core:5.6.15.Final'
+
+    // PostgreSQL Driver
     implementation 'org.postgresql:postgresql'
 
-    //swagger
+    // Liquibase
+    implementation 'org.liquibase:liquibase-core'
+
+    // Springdoc OpenAPI
     implementation "org.springdoc:springdoc-openapi-ui:$openApiVersion"
 }
 

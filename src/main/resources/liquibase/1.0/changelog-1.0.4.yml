@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: Insert Michael Johnson's data into students table
+      author: Rashad Amanov
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column:
+                  name: name
+                  value: Michael Johnson
+              - column:
+                  name: score
+                  value: 9.5
+              - column:
+                  name: gender
+                  value: MALE
+              - column:
+                  name: status
+                  value: DELETED
+              - column:
+                  name: speciality
+                  value: Chemistry
