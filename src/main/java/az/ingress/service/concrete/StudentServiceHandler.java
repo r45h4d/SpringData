@@ -2,20 +2,24 @@ package az.ingress.service.concrete;
 
 import az.ingress.dao.entity.StudentEntity;
 import az.ingress.dao.repository.StudentRepository;
+import az.ingress.exception.NotFoundException;
 import az.ingress.model.request.AddOrUpdateStudentRequest;
 import az.ingress.model.response.StudentResponse;
 import az.ingress.service.abstraction.StudentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
 import static az.ingress.mapper.StudentMapper.STUDENT_MAPPER;
+import static az.ingress.model.enums.ExceptionConstants.ORDER_NOT_FOUND;
 import static az.ingress.model.enums.StudentStatus.DELETED;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StudentServiceHandler implements StudentService {
     private final StudentRepository studentRepository;
     @Override
@@ -25,7 +29,9 @@ public class StudentServiceHandler implements StudentService {
 
     @Override
     public StudentResponse getStudent(Long id) {
+        log.info("ActionLog.getStudent.start id:{}",id);
         var student = fetchStudentIfExist(id);
+        log.info("ActionLog.getStudent.success id:{}",id);
         return STUDENT_MAPPER.mapEntityToResponse(student);
     }
 
@@ -58,6 +64,11 @@ public class StudentServiceHandler implements StudentService {
     }
 
     private StudentEntity fetchStudentIfExist(Long id){
-       return studentRepository.findById(id).orElseThrow(RuntimeException::new);
+       return studentRepository.findById(id).orElseThrow(
+               ()->{
+                   log.error("ActionLog.fetchStudentIfExist.error student with id:{} not found",id);
+                   return new NotFoundException(ORDER_NOT_FOUND.getCode(), ORDER_NOT_FOUND.getMessage());
+               }
+       );
     }
 }
