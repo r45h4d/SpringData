@@ -8,29 +8,28 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: bigint
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: name
-                  type: varchar(50)
+                  type: VARCHAR(64)
                   constraints:
                     nullable: false
               - column:
                   name: score
-                  type: numeric(3, 2)
+                  type: NUMERIC(3, 2)
                   constraints:
                     nullable: false
               - column:
                   name: gender
-                  type: varchar(8)
+                  type: VARCHAR(8)
                   constraints:
                     nullable: false
               - column:
                   name: status
-                  type: varchar(16)
+                  type: VARCHAR(16)
                   constraints:
                     nullable: false
-

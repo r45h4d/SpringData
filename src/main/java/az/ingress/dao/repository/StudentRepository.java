@@ -13,9 +13,9 @@ public interface StudentRepository extends CrudRepository<StudentEntity, Long> {
     List<StudentEntity> findAll();
 
     @Query(nativeQuery = true, value = "SELECT * FROM students WHERE status =:status")
-    List<StudentEntity> getWithStatus(String status);
+    List<StudentEntity> getByStatus(String status);
 
     @Query("SELECT s FROM StudentEntity s WHERE s.score >= :score")
-    List<StudentEntity> getWithScore(BigDecimal score);
+    List<StudentEntity> getByScore(BigDecimal score);
 
 }

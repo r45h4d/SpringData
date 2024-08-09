@@ -8,6 +8,6 @@ databaseChangeLog:
             columns:
               - column:
                   name: speciality
-                  type: varchar(50)
+                  type: VARCHAR(64)
                   constraints:
                     nullable: true

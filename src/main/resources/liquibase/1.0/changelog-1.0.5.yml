@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: Insert John Doe's data into students table
+      id: Insert Emily Davis's data into students table
       author: Rashad Amanov
       changes:
         - insert:
@@ -8,16 +8,16 @@ databaseChangeLog:
             columns:
               - column:
                   name: name
-                  value: John Doe
+                  value: Emily Davis
               - column:
                   name: score
-                  value: 5.50
+                  value: 8.0
               - column:
                   name: gender
-                  value: MALE
+                  value: FEMALE
               - column:
                   name: status
                   value: ACTIVE
               - column:
                   name: speciality
-                  value: Mathematics
+                  value: Biology

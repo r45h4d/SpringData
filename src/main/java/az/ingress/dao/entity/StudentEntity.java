@@ -6,11 +6,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
+
+import static javax.persistence.EnumType.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of="id")
 @Entity
 @Table(name="students")
 @Builder
@@ -23,9 +26,22 @@ public class StudentEntity {
 
     private BigDecimal score;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private StudentGender gender;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private StudentStatus status;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentEntity that = (StudentEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
