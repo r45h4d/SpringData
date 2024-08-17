@@ -9,6 +9,7 @@ import az.ingress.service.abstraction.StudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -16,17 +17,22 @@ import java.util.List;
 import static az.ingress.mapper.StudentMapper.STUDENT_MAPPER;
 import static az.ingress.model.enums.ExceptionConstants.ORDER_NOT_FOUND;
 import static az.ingress.model.enums.StudentStatus.DELETED;
+import static org.springframework.transaction.annotation.Isolation.READ_COMMITTED;
+import static org.springframework.transaction.annotation.Propagation.REQUIRED;
+import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class StudentServiceHandler implements StudentService {
     private final StudentRepository studentRepository;
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void addStudent(AddOrUpdateStudentRequest request) {
         studentRepository.save(STUDENT_MAPPER.buildStudentEntity(request));
     }
 
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     @Override
     public StudentResponse getStudent(Long id) {
         log.info("ActionLog.getStudent.start id:{}",id);
@@ -35,11 +41,13 @@ public class StudentServiceHandler implements StudentService {
         return STUDENT_MAPPER.mapEntityToResponse(student);
     }
 
+    @Transactional(readOnly = true, rollbackFor = Exception.class)
     @Override
     public List<StudentResponse> getStudents() {
         return studentRepository.findAll().stream().map(STUDENT_MAPPER::mapEntityToResponse).toList();
     }
 
+    @Transactional(propagation = REQUIRES_NEW, rollbackFor = Exception.class)
     @Override
     public void deleteStudent(Long id) {
         var student = fetchStudentIfExist(id);
@@ -47,6 +55,7 @@ public class StudentServiceHandler implements StudentService {
         studentRepository.save(student);
     }
 
+    @Transactional(propagation = REQUIRED, isolation = READ_COMMITTED, rollbackFor = Exception.class)
     @Override
     public void updateStudent(Long id, AddOrUpdateStudentRequest request) {
         var student = fetchStudentIfExist(id);
