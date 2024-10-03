@@ -3,6 +3,7 @@ package az.ingress.service.concrete;
 import az.ingress.dao.entity.StudentEntity;
 import az.ingress.dao.repository.StudentRepository;
 import az.ingress.exception.NotFoundException;
+import az.ingress.model.enums.StudentStatus;
 import az.ingress.model.request.AddOrUpdateStudentRequest;
 import az.ingress.model.response.StudentResponse;
 import az.ingress.service.abstraction.StudentService;
@@ -54,7 +55,7 @@ public class StudentServiceHandler implements StudentService {
         student.setStatus(DELETED);
         studentRepository.save(student);
     }
-
+    
     @Transactional(propagation = REQUIRED, isolation = READ_COMMITTED, rollbackFor = Exception.class)
     @Override
     public void updateStudent(Long id, AddOrUpdateStudentRequest request) {
@@ -63,6 +64,15 @@ public class StudentServiceHandler implements StudentService {
         student.setName(student.getName());
         studentRepository.save(student);
     }
+
+    @Transactional(propagation = REQUIRED, isolation = READ_COMMITTED, rollbackFor = Exception.class)
+    @Override
+    public void updateStudentStatus(Long id, StudentStatus status) {
+        var student = fetchStudentIfExist(id);
+        student.setStatus(status);
+        studentRepository.save(student);
+    }
+
 
     @PostConstruct
     private void test(){
